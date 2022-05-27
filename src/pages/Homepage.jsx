@@ -10,6 +10,7 @@ import axios from "axios";
 
 const Homepage = () => {
   const [pokemons, setPokemons] = useState([]);
+  const [term, setTerm] = useState("");
 
   useEffect(() => {
     const fetchPoke = async () => {
@@ -25,17 +26,28 @@ const Homepage = () => {
     fetchPoke();
   }, []); // empty => only runs when the page loads (once).
 
-  console.log("what is my state?", pokemons);
+  console.log("what is my state?", term);
+
+  // obj: Filter the list by the term
+  // Filter + sorting:
+  const shorterList = pokemons.filter((p) =>
+    p.name.toLowerCase().includes(term.toLowerCase())
+  );
 
   return (
     <div>
       <h1>Welcome to the homepage!!</h1>
+      <input
+        type="text"
+        value={term}
+        onChange={(e) => setTerm(e.target.value)}
+      />
       <Link to="/about">Go to about page</Link>
-      {pokemons
-        .filter((p) => p.dangerous)
-        .map((p) => (
-          <h3 key={p.name}>{p.name}</h3>
-        ))}
+      {shorterList.map((p) => (
+        <div>
+          <Link to={`/details/${p.name}`}>{p.name}</Link>
+        </div>
+      ))}
     </div>
   );
 };
