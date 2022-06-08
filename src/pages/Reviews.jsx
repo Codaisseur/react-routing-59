@@ -1,6 +1,6 @@
 const Reviews = () => {
-  // this will be a page for reviews
-  return <h1>Reviews</h1>;
+  // is this a better comment?
+  return <h1>To another thing</h1>;
 };
 
 export default Reviews;
