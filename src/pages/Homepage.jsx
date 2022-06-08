@@ -36,7 +36,7 @@ const Homepage = () => {
 
   return (
     <div>
-      <h1>Welcome to the homepage!!</h1>
+      <h1>I wanted to change it in a different way!!</h1>
       <input
         type="text"
         value={term}
