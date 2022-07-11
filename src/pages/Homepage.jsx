@@ -12,38 +12,23 @@ const Homepage = () => {
   const [pokemons, setPokemons] = useState([]);
   const [term, setTerm] = useState("");
 
-  useEffect(() => {
-    const fetchPoke = async () => {
-      try {
-        const response = await axios.get(
-          "https://pokeapi.co/api/v2/pokemon?limit=10&offset=0"
-        );
-        setPokemons(response.data.results);
-      } catch (e) {
-        console.log(e.message);
-      }
-    };
-    fetchPoke();
-  }, []); // empty => only runs when the page loads (once).
+  useEffect(() => {}, []); // empty => only runs when the page loads (once).
 
   console.log("what is my state?", term);
 
   // obj: Filter the list by the term
   // Filter + sorting:
-  const shorterList = pokemons.filter((p) =>
-    p.name.toLowerCase().includes(term.toLowerCase())
-  );
 
   return (
     <div>
-      <h1>I wanted to change it in a different way!!</h1>
+      <h1>Pokemon Search</h1>
       <input
         type="text"
         value={term}
         onChange={(e) => setTerm(e.target.value)}
       />
       <Link to="/about">Go to about page</Link>
-      {shorterList.map((p) => (
+      {pokemons.map((p) => (
         <div>
           <Link to={`/details/${p.name}`}>{p.name}</Link>
         </div>
